@@ -1,6 +1,25 @@
 {
-    "pack": {
-        "pack_format": 34,
-        "description": "= ResourcePackManagerRSP ="
-    }
+  "pack": {
+    "pack_format": 34,
+    "supported_formats": {
+      "min_inclusive": 30,
+      "max_inclusive": 80
+    },
+    "min_format": 30,
+    "max_format": 80,
+    "description": "ResourcePAK Generated Resource Pack"
+  },
+  "overlays": {
+    "entries": [
+      {
+        "directory": "uniformchange",
+        "formats": {
+          "min_inclusive": 47,
+          "max_inclusive": 76
+        },
+        "min_format": 47,
+        "max_format": 76
+      }
+    ]
+  }
 }
