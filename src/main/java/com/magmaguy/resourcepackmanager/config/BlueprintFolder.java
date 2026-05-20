@@ -35,6 +35,33 @@ public class BlueprintFolder {
                 e.printStackTrace();
             }
         }
+        Logger.info("Copying uniformchange folder");
+        try {
+            java.net.URL jarLocation = ResourcePackManager.class.getProtectionDomain().getCodeSource().getLocation();
+            if (jarLocation != null) {
+                File jarFile = new File(jarLocation.toURI());
+                if (jarFile.isFile()) {
+                    try (java.util.jar.JarFile jar = new java.util.jar.JarFile(jarFile)) {
+                        java.util.Enumeration<java.util.jar.JarEntry> entries = jar.entries();
+                        while (entries.hasMoreElements()) {
+                            java.util.jar.JarEntry entry = entries.nextElement();
+                            if (entry.getName().startsWith("uniformchange/") && !entry.isDirectory()) {
+                                File target = new File(blueprintDirectory, entry.getName());
+                                target.getParentFile().mkdirs();
+                                if (!target.exists()) {
+                                    try (InputStream in = jar.getInputStream(entry)) {
+                                        Files.copy(in, target.toPath());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Logger.warn("Failed to copy uniformchange folder: " + e.getMessage());
+            e.printStackTrace();
+        }
         try {
             ZipFile.ZipUtility.zip(blueprintDirectory, blueprintDirectory.getAbsolutePath() + File.separatorChar + "blueprint.zip");
         } catch (Exception e) {

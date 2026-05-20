@@ -1,8 +1,8 @@
-name: ResourcePackManager
+name: ResourcePAK
 main: com.magmaguy.resourcepackmanager.ResourcePackManager
 version: 1.8.0
 api-version: '1.21.4'
-author: MagmaGuy
+authors: ["MagmaGuy", "GMOCookies"]
 softdepend:
   - EliteMobs
   - FreeMinecraftModels

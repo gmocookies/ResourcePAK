@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.magmaguy</groupId>
-    <artifactId>ResourcePackManager</artifactId>
+    <artifactId>ResourcePAK</artifactId>
     <version>1.8.0</version>
 
     <properties>
@@ -83,7 +83,7 @@
     </dependencies>
 
     <build>
-        <finalName>ResourcePackManager</finalName>
+        <finalName>ResourcePAK</finalName>
 
         <plugins>
             <plugin>
