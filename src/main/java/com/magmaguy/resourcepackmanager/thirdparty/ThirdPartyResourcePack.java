@@ -144,6 +144,20 @@ public class ThirdPartyResourcePack {
                     }
                     allPluginsReady = true;
                     Logger.info("All monitored plugins are initialized. Starting resource pack stability checks.");
+
+                    boolean hasMonitoredPacks = false;
+                    for (ThirdPartyResourcePack pack : thirdPartyResourcePacks) {
+                        if (pack.isEnabled && pack.file != null && !pack.cluster) {
+                            hasMonitoredPacks = true;
+                            break;
+                        }
+                    }
+                    if (!hasMonitoredPacks) {
+                        Logger.info("No third-party packs to monitor. Mixing resource packs now.");
+                        Bukkit.getScheduler().runTaskAsynchronously(ResourcePackManager.plugin, Mix::mixResourcePacks);
+                        cancel();
+                        return;
+                    }
                 }
 
                 // Check if any monitored plugin has gone back to initializing (reload detected)

@@ -169,9 +169,10 @@ public class AutoHost {
             //Case if the remote server already has the resource pack
             done = true;
             if (firstUpload) {
-                //Recover from a reload by sending the pack to online players
-                for (Player player : Bukkit.getOnlinePlayers())
-                    AutoHost.sendResourcePack(player);
+                Bukkit.getScheduler().runTask(ResourcePackManager.plugin, () -> {
+                    for (Player player : Bukkit.getOnlinePlayers())
+                        AutoHost.sendResourcePack(player);
+                });
             }
             firstUpload = false;
         }
@@ -257,9 +258,10 @@ public class AutoHost {
                     Logger.info("Uploaded resource pack for automatic hosting! url: " + finalURL + rspUUID);
                     done = true;
                     if (firstUpload) {
-                        //Recover from a reload by sending the pack to online players
-                        for (Player player : Bukkit.getOnlinePlayers())
-                            AutoHost.sendResourcePack(player);
+                        Bukkit.getScheduler().runTask(ResourcePackManager.plugin, () -> {
+                            for (Player player : Bukkit.getOnlinePlayers())
+                                AutoHost.sendResourcePack(player);
+                        });
                     }
                     firstUpload = false;
                 } else {
@@ -305,9 +307,10 @@ public class AutoHost {
                                 Logger.info("Remote server already has this resource pack!");
                                 done = true;
                                 if (firstUpload) {
-                                    //Recover from a reload by sending the pack to online players
-                                    for (Player player : Bukkit.getOnlinePlayers())
-                                        AutoHost.sendResourcePack(player);
+                                    Bukkit.getScheduler().runTask(ResourcePackManager.plugin, () -> {
+                                        for (Player player : Bukkit.getOnlinePlayers())
+                                            AutoHost.sendResourcePack(player);
+                                    });
                                 }
                                 firstUpload = false;
                             }
